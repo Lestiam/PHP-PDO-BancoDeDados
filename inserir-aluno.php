@@ -11,4 +11,4 @@ $student = new Student(null, 'Igor Teles', new DateTimeImmutable('1993-03-06'));
 
 $sqlInsert = "INSERT INTO students(name, birth_date) VALUES ('{$student->name()}', '{$student->birthDate()->format('Y-m-d')}');"; //crio um opjeto aluno no mundo do banco de dados
 
-var_dump($pdo->exec($sqlInsert)); //executa uma instrução SQL e retorna o número de linhas afetadas.
+var_dump($pdo->egit commitxec($sqlInsert)); //executa uma instrução SQL e retorna o número de linhas afetadas.
