@@ -1,3 +1,31 @@
-Alternativa correta! O método exec retorna um inteiro contendo o número de registros afetados.
+1)Alternativa correta! O método exec retorna um inteiro contendo o número de registros afetados.
 Se você insere um registro, o número 1 é retornado. Se insere cinco registros, o número 5 é retornado.
 Se busca dados com SELECT, o número 0 é devolvido, já que nenhum registro foi afetado
+
+
+2)Agora já sabemos utilizar os métodos query e fetchAll para trazer dados do banco.
+Por padrão, qual é o formato do array retornado pelo método fetchAll, como vimos no último vídeo?
+
+[
+    [
+        {nomeDaColuna1} => {valorDaColuna1},
+        0 => {valorDaColuna1},
+        {nomeDaColuna2} => {valorDaColuna2},
+        1 => {valorDaColuna2},
+    ]
+]
+
+Alternativa correta! Por padrão, o resultado é neste formato: um array de linhas, onde cada linha é representada por outro array.
+Nesse array, representando cada linha, as chaves são os nomes das colunas e o índice delas, começando por 0, enquanto os valores do array são os
+valores de cada coluna. Isso resulta nos valores sendo duplicados nesse array. Veremos mais à frente como mudar esse formato.
+
+
+
+Ao tentar buscar dados do banco de dados, você pode informar como quer que os métodos do PDO formatem esses dados pra você. Os principais fetch modes ou fetch styles são:
+
+PDO::FETCH_ASSOC: Retorna cada linha como um array associativo, onde a chave é o nome da coluna, e o valor é o valor da coluna em si
+PDO::FETCH_BOTH (esse é o padrão): Retorna cada linha como um array com as chaves sendo tanto o índice da coluna (começando do 0) quanto o nome da coluna, ou seja, os valores acabam ficando duplicados nesse formato
+PDO::FETCH_CLASS: Cada linha do resultado é retornado como uma instância da classe especificada em outro parâmetro. A classe não pode ter parâmetros no construtor e cada coluna terá o seu valor atribuído a uma propriedade de mesmo nome no objeto criado
+PDO::FETCH_INTO: Funciona de forma muito semelhante ao FETCH_CLASS, mas ao invés de criar o objeto para você, ele preenche um objeto já criado com os valores buscados
+PDO::FETCH_NUM: Retorna cada linha como um array, onde a chave é o índice numérico da coluna, começando do 0, e o valor é o valor da coluna em si
+Para ver os demais modos de busca e ler com mais detalhes os explicados aqui, você pode conferir a documentação oficial do PHP: PDOStatement::fetch.
