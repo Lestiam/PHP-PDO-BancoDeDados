@@ -29,3 +29,16 @@ PDO::FETCH_CLASS: Cada linha do resultado é retornado como uma instância da cl
 PDO::FETCH_INTO: Funciona de forma muito semelhante ao FETCH_CLASS, mas ao invés de criar o objeto para você, ele preenche um objeto já criado com os valores buscados
 PDO::FETCH_NUM: Retorna cada linha como um array, onde a chave é o índice numérico da coluna, começando do 0, e o valor é o valor da coluna em si
 Para ver os demais modos de busca e ler com mais detalhes os explicados aqui, você pode conferir a documentação oficial do PHP: PDOStatement::fetch.
+
+
+3)Para utilizar os prepared statements, precisamos de um método a mais, o prepare. Mas essa única "desvantagem" é facilmente vencida pelas diversas vantagens de utilizá-los.
+Quais das alternativas abaixo são vantagens de se utilizar prepared statements?
+
+Performance
+Alternativa correta! Prepared statements são lidos pelo banco de dados e preparados mesmo antes de serem executados, o que
+os fazem serem executados mais rápidos. Além disso, o mesmo prepared statement pode ser executado várias vezes, aumentando ainda mais a performance nesses casos.
+
+Segurança
+Alternativa correta! Com prepared statements, nós conseguimos de forma muito simples, evitar SQL Injection em nosso sistema.
+
+

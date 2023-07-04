@@ -7,7 +7,7 @@ require_once 'vendor/autoload.php';
 $databasePath = __DIR__ . '/banco.sqlite'; //a constante DIR pega meu diretorio atual.
 $pdo = new PDO('sqlite:' . $databasePath);
 
-$statement = $pdo->query('SELECT * FROM students WHERE id = 1'); //chama a função query para trazer todos os alunos
+$statement = $pdo->query('SELECT * FROM students;'); //chama a função query para trazer todos os alunos
 
 $studentDataList = $statement->fetchAll(PDO::FETCH_ASSOC); //retorna um array contendo todas as informações, indices numeros, nomes e até objetos. o fetchAll busca todos os dados, mas passando o PDO::FETCH_ASSOC como parametro, ele retorna apenas um unico valor por nome de coluna
 //se eu usar o fetch ao inves do fetchAll, ele me retorna uma linha com 1 resultado e a vantagem, é que eu não preciso usar um foreach para trazer estes resultados.
@@ -28,7 +28,7 @@ $studentDataList = $statement->fetchAll(PDO::FETCH_ASSOC); //retorna um array co
 $studentList = []; //é uma lista de objetos do tipo estudante
 
 foreach ($studentDataList as $studentData) { //é um foreach para utilizar o FETCH_ASSOC instanciando os objetos corretamente com os valores gerados e fazendo o mapeamento quando for necessario.
-    $studentList = new Student(
+    $studentList[] = new Student(
         $studentData['id'],
         $studentData['name'],
         new DateTimeImmutable($studentData['birth_date'])
