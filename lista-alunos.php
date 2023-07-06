@@ -4,8 +4,7 @@ use Alura\Pdo\Domain\Model\Student;
 
 require_once 'vendor/autoload.php';
 
-$databasePath = __DIR__ . '/banco.sqlite'; //a constante DIR pega meu diretorio atual.
-$pdo = new PDO('sqlite:' . $databasePath);
+$pdo = \Alura\Pdo\Domain\Infrastructure\Persistence\ConnectionCreator::createConnection();
 
 $statement = $pdo->query('SELECT * FROM students;'); //chama a função query para trazer todos os alunos
 

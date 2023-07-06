@@ -42,3 +42,26 @@ Segurança
 Alternativa correta! Com prepared statements, nós conseguimos de forma muito simples, evitar SQL Injection em nosso sistema.
 
 
+4)No último vídeo, nós separamos a responsabilidade de acessar os dados dos alunos em um repositório.
+Que vantagem essa separação traz para o nosso sistema?
+
+Ganhamos em manutenção, pois temos uma classe com propósito e bem coesa
+
+
+Alternativa correta! A classe de repositório tem uma única responsabilidade: gerenciar a persistência dos alunos.
+Com isso, em um sistema grande, fica muito mais fácil dar manutenção quando temos classes coesas como essa.
+
+
+Além do padrão Repository que foi citado neste capítulo, existe também o padrão DAO.
+
+Segundo o livro DDD in PHP, a diferença é a seguinte:
+
+The significant difference is that Repositories represent collections, while DAOs are closer to the database and are often far more table-centric.
+
+Basicamente, ambos servem o mesmo propósito, mas a diferença é na interface deles, ou seja, em termos práticos, nos nomes dos métodos.
+
+Enquanto DAOs vão ter métodos como get, create, update e delete, lembrando ações que realizamos em tabelas de um banco de dados,
+Repositories vão possuir métodos como all, findById, add, remove, tratando os dados como uma coleção.
+
+Eu opto sempre por utilizar Repositories para que eles continuem fazendo sentido caso eu esteja persistindo dados em algum lugar que não seja um banco de dados
+ (API, arquivo, sistema externo, etc)
