@@ -1,10 +1,10 @@
 <?php
 
-namespace Alura\Pdo\Domain\Infrastructure\Repository;
+namespace Alura\Pdo\Infrastructure\Repository;
 
 use Alura\Pdo\Domain\Model\Student;
 use Alura\Pdo\Domain\Repository\StudentRepository;
-USE PDO;
+use PDO;
 
 class PdoStudentRepository implements StudentRepository
 {
@@ -60,18 +60,18 @@ class PdoStudentRepository implements StudentRepository
     private function insert(Student $student): bool
     {
         $insertQuery = 'INSERT INTO students (name, birth_date) VALUES (:name, :birth_date);'; //insere em estudantes o nome e a data de nascimento utilizando dos parametros nomeados (:name, :birth_date)
-        $stmt = $this->prepare($insertQuery);
+        $stmt = $this->connection->prepare($insertQuery);
 
-        $sucess = $stmt->execute([ //no execute, utilizao um array associativo onde a chave é o nome do parametro e o valor é o parametro que eu quero passar
+        $success = $stmt->execute([ //no execute, utilizao um array associativo onde a chave é o nome do parametro e o valor é o parametro que eu quero passar
             ':name' => $student->name(),
             ':birth_date' => $student->birthDate()->format('Y-m-d'),
         ]);
 
-        if ($sucess) {
+        if ($success) {
             $student->defineId($this->connection->lastInsertId());//se for bem sucedido, eu defino o ID desse aluno. O PHP tem este método chamado lastInsertId que ele pega o ID da ultima inserção no banco
         }
 
-        return $sucess; //retorno se foi um sucesso ou não
+        return $success; //retorno se foi um sucesso ou não
     }
 
     private function update(Student $student):bool

@@ -1,6 +1,6 @@
 <?php
 
-namespace Alura\Pdo\Domain\Infrastructure\Persistence;
+namespace Alura\Pdo\Infrastructure\Persistence;
 
 use PDO;
 

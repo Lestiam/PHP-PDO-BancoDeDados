@@ -4,7 +4,7 @@ use Alura\Pdo\Domain\Model\Student;
 
 require_once 'vendor/autoload.php';
 
-$pdo = \Alura\Pdo\Domain\Infrastructure\Persistence\ConnectionCreator::createConnection();
+$pdo = \Alura\Pdo\Infrastructure\Persistence\ConnectionCreator::createConnection();
 
 $statement = $pdo->query('SELECT * FROM students;'); //chama a função query para trazer todos os alunos
 

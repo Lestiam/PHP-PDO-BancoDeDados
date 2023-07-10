@@ -65,3 +65,7 @@ Repositories vão possuir métodos como all, findById, add, remove, tratando os 
 
 Eu opto sempre por utilizar Repositories para que eles continuem fazendo sentido caso eu esteja persistindo dados em algum lugar que não seja um banco de dados
  (API, arquivo, sistema externo, etc)
+
+ Que o PDO nos fornece uma API muito simples para gerenciar transações
+ Como iniciar e finalizar uma transação, com beginTransaction e commit
+ Que é possível "cancelar" uma transação, com o método rollBack

@@ -4,7 +4,7 @@ use Alura\Pdo\Domain\Model\Student;
 
 require_once 'vendor/autoload.php';
 
-$pdo = \Alura\Pdo\Domain\Infrastructure\Persistence\ConnectionCreator::createConnection();
+$pdo = \Alura\Pdo\Infrastructure\Persistence\ConnectionCreator::createConnection();
 
 $student = new Student(
     null,
