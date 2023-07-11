@@ -7,6 +7,8 @@ class Student
     private ?int $id;
     private string $name;
     private \DateTimeInterface $birthDate;
+    /** @var Phone[] */ //a IDE vai me informar que esse cara é do tipo phone e vai me ajduar com o auto-complete
+    private array $phones = []; //inicializo como um array vazio porque todo aluno que eu criar, vai começar sem telefone nenhum
 
     public function __construct(?int $id, string $name, \DateTimeInterface $birthDate)
     {
@@ -48,5 +50,16 @@ class Student
         return $this->birthDate
             ->diff(new \DateTimeImmutable())
             ->y;
+    }
+
+    public function addPhone(Phone $phone): void
+    {
+        $this->phones[] = $phone; //adiciono no array de telefones, esse telefone que eu recebi
+    }
+
+    /** @return Phone[] */
+    public function phones(): array //recupera o telefone
+    {
+        return $this->phones;
     }
 }
