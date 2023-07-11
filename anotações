@@ -66,6 +66,13 @@ Repositories vão possuir métodos como all, findById, add, remove, tratando os 
 Eu opto sempre por utilizar Repositories para que eles continuem fazendo sentido caso eu esteja persistindo dados em algum lugar que não seja um banco de dados
  (API, arquivo, sistema externo, etc)
 
- Que o PDO nos fornece uma API muito simples para gerenciar transações
- Como iniciar e finalizar uma transação, com beginTransaction e commit
- Que é possível "cancelar" uma transação, com o método rollBack
+5)Sabemos que, através do método errorInfo do PDO ou do PDOStatement, nós podemos pegar as informações sobre o último erro que ocorreu no banco de dados.
+ Quais informações esse método nos traz?
+
+ SQLSTATE (código de erro genérico do padrão ANSI SQL)
+ Alternativa correta! Esse código de erro pode te dar informações sobre o que aconteceu no banco, mas nem sempre de forma muito clara.
+ Ele está na primeira posição do array que o método errorInfo retorna.
+
+ Código e mensagem de erro específicos do driver do banco de dados utilizado
+ Alternativa correta! Na segunda e terceira posições do array retornado pelo método errorInfo, respectivamente, estão um
+  código e uma mensagem de erro retornadas pelo driver de conexão com o banco de dados utilizado.

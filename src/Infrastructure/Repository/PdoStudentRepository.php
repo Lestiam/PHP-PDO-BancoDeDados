@@ -4,6 +4,7 @@ namespace Alura\Pdo\Infrastructure\Repository;
 
 use Alura\Pdo\Domain\Model\Student;
 use Alura\Pdo\Domain\Repository\StudentRepository;
+use http\Exception\RuntimeException;
 use PDO;
 
 class PdoStudentRepository implements StudentRepository
@@ -34,7 +35,7 @@ class PdoStudentRepository implements StudentRepository
     }
 
     private function hydrateStudentList(\PDOStatement $stmt) : array { //esse padrão que se chama hidratar, eu transfiro dado de uma camada para outra. Trago dados do banco de dados para a nossa classe
-        $studentDataList = $stmt->fetchAll(PDO::FETCH_ASSOC); //eu só consigo fazer fetch, fetchall depois de executar (execute) o meu statment. Aqui eu busco todos os resultados desse statment no formato de array associativo
+        $studentDataList = $stmt->fetchAll(); //eu só consigo fazer fetch, fetchall depois de executar (execute) o meu statment. Aqui eu busco todos os resultados desse statment no formato de array associativo
         $studentList = []; //inicializo uma lista vazia dos alunos
 
         foreach ($studentDataList as $studentData) { //faço um foreach dos dados que eu trouxe do banco de dados
@@ -59,8 +60,9 @@ class PdoStudentRepository implements StudentRepository
 
     private function insert(Student $student): bool
     {
-        $insertQuery = 'INSERT INTO students (name, birth_date) VALUES (:name, :birth_date);'; //insere em estudantes o nome e a data de nascimento utilizando dos parametros nomeados (:name, :birth_date)
+        $insertQuery = 'INSERT INTO students(name, birth_date) VALUES (:name, :birth_date);'; //insere em estudantes o nome e a data de nascimento utilizando dos parametros nomeados (:name, :birth_date)
         $stmt = $this->connection->prepare($insertQuery);
+
 
         $success = $stmt->execute([ //no execute, utilizao um array associativo onde a chave é o nome do parametro e o valor é o parametro que eu quero passar
             ':name' => $student->name(),
